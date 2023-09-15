@@ -13,7 +13,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from model.model import CONFIGS, VisionTransformer_DomainClassifier_cda, VAE
+from model.model import CONFIGS, VisionTransformer_DomainClassifier_cda, VAE, CVAE
 from model.lossZoo import im
 from torch.optim.lr_scheduler import LambdaLR
 import math, random
@@ -474,7 +474,7 @@ def generate_feature(args, dset_loaders, t, netF):
     print(' img : ', x.shape)  # img :  torch.Size([batch_size, 1, 28, 28])， 每次迭代获取batch_size张图片，每张图大小为(1,28,28)
 
     # Step 2: 准备工作 : 搭建计算流程
-    model = network.CVAE(input_dim=args.input_dim, y_dim=args.class_num, z_dim=args.z_dim).cuda()  # 生成AE模型，并转移到GPU上去
+    model = CVAE(input_dim=args.input_dim, y_dim=args.class_num, z_dim=args.z_dim).cuda()  # 生成AE模型，并转移到GPU上去
     print('The structure of our model is shown below: \n')
     print(model)
     optimizer = optim.Adam(model.parameters(), lr=args.lr)  # 生成优化器，需要优化的是model的参数，学习率为0.001
