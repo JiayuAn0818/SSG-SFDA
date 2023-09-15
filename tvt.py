@@ -13,8 +13,8 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from models.modeling_orig import VisionTransformer, CONFIGS, VisionTransformer_DomainClassifier, VAE
-from models.lossZoo import im
+from model.model import VisionTransformer, CONFIGS, VisionTransformer_DomainClassifier, VAE
+from model.lossZoo import im
 from torch.optim.lr_scheduler import LambdaLR
 import math, random
 from data_impression import loss_function
